@@ -1,4 +1,4 @@
-tar -xf dam.tar 
+tar -xf dam.tar -C ~/ 
 
 rm -rf dam.tar
 
