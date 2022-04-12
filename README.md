@@ -7,7 +7,8 @@
   나중에 혹시라도 libft 함수를 쓸지도..?  
   
 ## 2. 설치 방법
-  터미널에 `sh install_dam.sh` 또는 `bash install_dam.sh` 작성  
+  해당 레포에서 깃 클론하기 (클론 하면 설치 bash 파일과 tar 파일, README 세 개 존재)
+  터미널에 `sh install_dam.sh` 또는 `bash install_dam.sh` 작성  (자동으로 tar 압축 해제 후 압축 파일 삭제)
   홈(~)에 .dam 폴더 자동으로 생성 및 alias 작성됨 (맥일 경우만 작동하며 리눅스일 경우 zshrc를 bashrc로 변경하여 설치할 것)
   
 ## 3. 사용 방법
