@@ -1,4 +1,6 @@
-tar -xf dam.tar -C ~/ 
+mkdir ~/.dam
+
+tar -xf dam.tar -C ~/.dam
 
 rm -rf dam.tar
 
