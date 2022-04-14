@@ -1,0 +1,21 @@
+ft_lstsize
+리스트 길이 세기
+ft_lstsize({길이를 셀 리스트})
+
+How to use
+printf("%d", ft_lstsize(lst));
+
+-----  RETURN  -----
+5
+
+SYNOPSIS
+int	ft_lstsize(t_list *lst)
+
+PARAMETER
+- lst : 리스트의 시작점
+
+DESCRIPTION
+리스트에 있는 노드의 수를 세는 함수이다.
+
+RETURN VALUES
+리스트의 길이를 반환한다.

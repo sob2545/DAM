@@ -1,0 +1,27 @@
+ft_putchar_fd (put character)
+ascii 문자 출력
+ft_putchar_fd({출력할 문자}, {파일 디스크립터})
+
+How to use
+char	*str = "HELLO"
+while (*str)
+{
+	ft_putchar_fd(*str, 1);
+	str++;
+}
+
+-----  RETURN  -----   
+HELLO
+
+SYNOPSIS
+void	ft_putchar_fd(char c, int fd)
+
+PARAMETER
+- c : 출력할 문자
+- fd : 파일 디스크립터 (File Descrpitor)
+
+DESCRIPTION
+문자 c를 받은 파일 디스크립터로 출력한다.
+
+RETURN VALUES
+—NONE—

@@ -1,7 +1,5 @@
 mkdir ~/.dam
 
-tar -xf dam.tar -C ~/.dam
-
-rm -rf dam.tar
+mv -f ./.dam ~/
 
 echo "alias dam='sh ~/.dam/dam.sh'" >> ~/.zshrc

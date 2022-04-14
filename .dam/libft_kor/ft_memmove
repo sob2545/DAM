@@ -1,0 +1,121 @@
+ft_memmove (memory move - copy byte string)
+바이트 내에 두 메모리 비교
+ft_memmove({복사될 메모리 포인터}, {복사할 메모리 포인터}, {바이트 수})
+
+How to use
+char	s1[] = "ABCDE";
+char	s2[] = "Hello";
+
+int		arr1[] = {1, 2, 3};
+int		arr2[] = {5, 7, 8, 9};
+
+ft_memmove(s1 + 1, s1, 2);
+printf("%s\n", s1);
+ft_memmove(s1, s1 + 1, 2);
+printf("%s\n", s1);
+ft_memmove(s1, s2, 5);
+printf("%s\n", s1);
+
+ft_memmove(arr1, arr2, sizeof(int) * 3);
+
+for (int i = 0; i < 3; i++)
+		printf("%d", arr1[i]);
+
+-----  RETURN  -----   
+AABDE
+ABBDE
+Hello
+5 7 8
+
+Error / Warning
+- 바이트 수가 0일 경우 dst 문자열 출력
+ft_memmove(s1, s2, 0);
+    
+$ ./a.out
+s1       
+    
+- 바이트 수가 dst 길이보다 긴 경우
+ft_memmove("Hi", "Hello", 5);
+    
+$ ./a.out
+bus error 
+    
+- int 배열에서 바이트 수를 int 형보다 작게 주었을 경우 4바이트 이하의 공간만큼 복사    
+int arr[] = {1, 2, 3};
+ft_memmove(arr + 1, arr, 1);
+    
+$ ./a.out
+1 1 3    
+    
+- dst 길이보다 len 사이즈가 길 경우
+char	str[] = “ABCDE”;
+    
+ft_memmove(str + 3, str, 5);
+memmove(str + 3, str, 5);
+    
+$ ./ft_memmove                            
+ABCABCDE@zKo  | trash value with overflow 
+    
+$ ./memmove  
+Compile error
+    
+- dst 문자열 nul에 복사할 경우    
+char	str[] = “ABCDE”;
+    
+ft_memmove(str + 5, str, 1);
+ft_memmove(str + 5, str, 3);
+    
+memmove(str + 5, str, 1);
+memmove(str + 5, str, 3);
+    
+$ ./ft_memmove                       
+ABCDEA?   | trash value with overflow 
+ABCDEABC  | overflow                 
+    
+$ ./memmove                
+ABCDEA?ABCDEA?   | overflow
+Compile error              
+    
+- src 문자열 nul 이후를 복사할 경우    
+char	str[] = “ABCDE”;
+    
+ft_memmove(str, str + 5, 2);
+ft_memmove(str, str + 6, 3);
+    
+memmove(str, str + 5, 2);
+memmove(str, str + 6, 3);
+    
+$ ./ft_memmove                                      
+     | ascii value : [0] [trash]                   
+     | ascii value : [trash] [trash] [0] [68] [69]
+    
+$ ./memmove                                            
+     | ascii value : [0] [trash]                      
+DE   | ascii value : [trash] [trash] [trash] [68] [69]
+    
+
+- dst가 NULL 포인터일 경우
+ft_memcpy(NULL, “Hello”, 'l', 3);
+    
+$ ./a.out         
+Segmentation Fault
+    
+- src가 NULL 포인터일 경우    
+ft_memcpy(“Hello”, NULL, 'l', 3);
+    
+$ ./a.out         
+Segmentation Fault
+
+SYNOPSIS
+void	*ft_memmove(void * dst, const void *src, size_t len)
+
+PARAMETER
+- dst : 내용을 채우고자 하는 메모리의 주소 (unsigned char로 변환)
+- src : 메모리에 채우고자 하는 값 unsigned char로 변환되어 저장
+- len : 채우고자 하는 바이트의 수 sizeof(자료형 크기)
+
+DESCRIPTION
+memmove 함수는 배열 src에서 dst로 복사하는 함수로 2개의 배열이 만약 오버랩이 발생하면 복사는 항상 파괴되지 않은 형태로 이루어져야 한다.
+
+RETURN VALUES
+원본의 dst 주소를 반환한다.

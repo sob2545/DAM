@@ -1,0 +1,39 @@
+ft_strlen (find length of string)
+문자열 길이를 세기
+ft_strlen({길이를 셀 문자열})
+
+How to use
+if (i > ft_strlen(s))
+		...
+
+len = ft_strlen(s);
+printf("%d", (int)ft_strlen("Hello"));
+
+-----  RETURN  -----   
+5
+
+Error / Warning
+- 문자열로 NULL 포인터가 들어올 경우
+ft_strlen(NULL);
+    
+$ ./a.out         
+Segmentation fault
+    
+
+- 빈 문자열이 들어올 경우    
+ft_strlen(“”);
+    
+$ ./a.out   
+0
+
+SYNOPSIS
+size_t	ft_strlen(const char *s)
+
+PARAMETER
+- s : 길이를 세고자 하는 문자열
+
+DESCRIPTION
+strlen 함수는 문자열 s의 길이를 계산하는 함수이다.
+
+RETURN VALUES
+NUL 종료된 문자열의 길이를 반환한다.

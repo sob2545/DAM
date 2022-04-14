@@ -1,0 +1,41 @@
+ft_strrchr (locate character in reverse string)
+문자열 끝에서 부터 문자 찾기
+ft_strchr({문자열}, {찾을 문자})
+
+How to use
+printf("%s", ft_strrchr("hello", 'l');
+
+while (ft_strrchr(s1, charset);
+	...
+
+-----  RETURN  -----   
+lo
+
+Error / Warning
+- 빈 문자열이 들어올 경우
+ft_strrchr(“”, ‘l’);
+ft_strrchr(“”, ‘\0’);
+    
+$ ./a.out               
+(null)                   
+    | ascii value : [0]
+    
+
+- 문자열로 NULL 포인터가 들어올 경우
+ft_strrchr(NULL, ‘\0’)
+    
+$ ./a.out         
+Segmentation Fault
+
+SYNOPSIS
+char	*ft_strrchr(const char *s, int c)
+
+PARAMETER
+- s : c 문자를 찾을 문자열
+- c : 찾고자 하는 문자(unsigned char)
+
+DESCRIPTION
+strrchr 함수는 c 문자를 s 문자열 마지막에서 부터 찾는것 빼고 strchr과 동일하다.
+
+RETURN VALUES
+strrchr 함수는 찾고자 하는 c 문자가 s 문자열에 위치한 포인터 주소를 반환, 만약 c 문자가 없을 경우 NULL 포인터 반환한다.

@@ -1,0 +1,83 @@
+ft_memccpy (Copy string until character found)
+특정 문자가 있을 때까지 메모리를 복사하는 함수
+ft_memccpy({복사될 메모리 포인터}, {복사할 메모리 포인터}, {src에서 찾을 문자}, {바이트 수})
+
+How to use
+char	dst[] = "test";
+char	*src = "Hello World";
+
+int		arr_1[5];
+int		arr_2[] = {1, 2, 3, 4, 5}; 
+
+printf("%s", (char *)ft_memccpy(dst, src, 'l', 3);               // 3바이트 내에 src의 l까지 복사
+printf("%s", (char *)ft_memccpy(dst, src, 'W', 4);               // 4바이트 내에 src의 W까지 복사
+printf("%s", (char *)ft_memccpy(dst, src, 'W', ft_strlen(src));  // src 전체 길이 내에 W까지 복사
+
+
+ft_bzero(arr_1, sizeof(int) * 5);       // arr_1 배열을 0으로 초기화
+ft_memccpy(arr_1, arr_2, 2, 3);         // 3바이트 내에 arr_2의 2까지 복사
+
+for(int i = 0; i < 5, i++)
+		printf("%d", arr_1[i]);
+
+-----  RETURN  -----
+t             dst = Helt
+(null)        dst = Hell
+nul [\0]      dst = Hello W
+
+1 2 0 0 0
+
+Error / Warning
+- 바이트 수가 0일 경우   
+ft_memccpy(dst, src, 'a', 0);
+    
+$ ./a.out
+(null)   
+    
+- dst 크기가 충분히 크지 않을 경우    
+ft_memccpy("", "Hello", '\0', 5);
+    
+$ ./a.out         
+Segmentation Fault
+    
+- dst가 NULL 포인터일 경우
+ft_memcpy(NULL, “Hello”, 'l', 3);
+    
+$ ./a.out         
+Segmentation Fault
+    
+- src가 NULL 포인터일 경우
+ft_memcpy(“Hello”, NULL, 'l', 3);
+    
+$ ./a.out
+Segmentation Fault
+    
+- dst 주소가 src 주소보다 작은 경우    
+ft_memcpy(str, str + 3, 'a', 5);
+    
+$ ./a.out          
+bus error / overlap
+    
+- int 배열 dst에 할당된 공간보다 많은 바이트를 복사할 경우    
+int	dst[5];
+ft_memcpy(dst, src, 2, sizeof(int) * 7);
+    
+$ ./a.out
+Sig abort
+
+SYNOPSIS
+void	*ft_memccpy(void *dst, const void *src, int c, size_t n);
+
+PARAMETER
+- dest : 복사 받을 메모리를 가르키는 포인터
+- src : 복사할 메모리를 카르키는 포인터
+- c : src에서 찾을 문자 (unsinged char형으로 변환)
+- n : 복사할 데이터의 길이 (바이트)
+
+DESCRIPTION
+memccpy 함수는 n 바이트 만큼 문자열 src 에서 문자열 dst로 복사. 만약 문자열 src 내에 문자 c (unsgined char로 변환된 값)가 있을 경우 c까지만 복사를 하고 문자 c 다음의 dst 포인터를 반환한다. n 바이트 내에 문자 c가 존재하지 않으면 n 바이트만큼 복사를 하고, NULL 포인터를 반환한다.
+
+행동이 정의되지 않았기 때문에 문자열 src와 dst는 오버랩되면 안된다.
+
+RETURN VALUES
+src 문자열 내에 c가 있을 시 문자열 dst의 c 다음 포인터 반환, 없을 경우 NULL 포인터를 반환한다.

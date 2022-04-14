@@ -1,0 +1,31 @@
+ft_lstclear
+리스트 삭제
+ft_lstclear({삭제할 리스트}, {내용을 지우는 함수})
+
+How to use
+static void	lst_del(void *content)
+{
+	free(content);
+	content = NULL;
+}
+
+int	main(void)
+{
+	...
+	void (*del)(void *);
+	del = lst_del;
+	ft_lstclear(lst, del);
+}
+
+SYNOPSIS
+void	ft_lstclear(t_list *lst, void (*del)(void *)
+
+PARAMETER
+- *lst : 노드의 포인터 주소
+- (*del)(void *) : 노드의 내용을 지울 함수의 주소
+
+DESCRIPTION
+del 함수를 이용하여 주어진 노드와 연속된 모든 노드들의 내용을 지우고 메모리에서 할당 해제하는 함수이다. 마지막 리스트의 포인터는 항상 NULL을 가르켜야 된다.
+
+RETURN VALUES
+—NONE—

@@ -1,0 +1,26 @@
+ft_toupper (to upper character)
+소문자를 대문자로 변경
+ft_toupper({소문자})
+
+How to use
+char	*str = "Hello"
+while (*str)
+{
+	ft_toupper(*str);
+	str++;
+}
+
+-----  RETURN  -----   
+HELLO
+
+SYNOPSIS
+int ft_toupper (int c)
+
+PARAMETER
+- c : 대문자로 바꾸려는 문자 (ascii 코드)
+
+DESCRIPTION
+toupper 함수는 소문자를 일치하는 대문자로 변환하는 함수이다. 매개변수는 반드시 unsigned char 형태나 EOF 값으로 나타낼 수 있다.
+
+RETURN VALUES
+만약 매개변수가 소문자이면 일치하는 대문자로 변환하여 반환하고 아닌 경우 받은 값을 그대로 반환한다.

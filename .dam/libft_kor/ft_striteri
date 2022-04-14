@@ -1,0 +1,53 @@
+ft_striteri (string iterate)
+포인터 함수로 문자열 내용 변경
+ft_striteri({변경할 문자열}, {포인터 함수 프로토타입})
+
+How to use
+static void toupper_idx(unsigned int i, char *str)
+{
+	(void) i;
+	if (*str >= 'a' && *str <= 'z')
+		*str -= 32;
+}
+
+int main(void)
+{
+	char	str[6]	= "Hello";	
+	void (*f)(unsigned int, char *);
+	f = toupper_idx;
+
+	ft_striteri(str, f);
+	printf("%s", str);
+}
+
+-----  RETURN  -----   
+HELLO
+
+Error / Warning
+- 문자열 포인터가 NULL일 경우 str에 접근 시 Segmentation fault
+char	*str = NULL;
+ft_striteri(str, f)
+    
+$ ./a.out         
+Segmentation fault
+    
+- 함수 포인터가 NULL일 경우
+f = NULL;
+    
+ft_striteri(str, f)
+    
+$ ./a.out                        
+str 출력     [ft_striteri 함수 종료]
+
+SYNOPSIS
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
+
+PARAMETER
+- s : 포인터 함수의 매개변수로 사용할 문자열
+- f : 문자열 s의 인덱스와 해당 주소를 매개변수로 받아 사용할 함수의 포인터
+
+DESCRIPTION
+포인터 함수 f의 첫 번째 매개변수인 인덱스가 s 문자열을 지나가면서 해당 문자를 다음 매개변수로 받는다. 각각의 문자가 포인터 함수 f에 주소값으로 전달되며, 필요시 변경된다.
+
+RETURN VALUES
+—NONE—

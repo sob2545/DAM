@@ -1,0 +1,43 @@
+ft_calloc (count byte allocate)
+오브젝트 수만큼 자료형 사이즈로 메모리 할당 후 0으로 초기화
+ft_calloc({오브젝트 수}, {자료형 크기})
+
+How to use
+int  *ptr1;
+char *ptr2;
+
+ptr1 = ft_calloc(5, sizeof(int));
+ptr2 = ft_calloc(5, sizeof(char));
+
+-----  RETURN  -----   
+0 0 0 0 0
+0[0] 0[0] 0[0] 0[0] 0[0]
+
+Error / Warning
+- 오브젝트 수 또는 자료형 크기가 0이 들어올 경우
+ft_calloc(5, 0);
+    
+$ ./a.out 
+0x600000534020
+0 0 0 0 0
+    
+
+- int 배열 calloc 시 자료형 크기가 맞지 않는 경우 정상작동
+int	*ptr;    
+ptr = ft_calloc(5, 2);
+    
+$ ./a.out
+0 0 0 0 0
+
+SYNOPSIS
+void	*ft_calloc(size_t count, size_t size)
+
+PARAMETER
+- count : 할당하고자 하는 수
+- size : 할당하고자 하는 바이트 크기
+
+DESCRIPTION
+calloc 함수는 count 오브젝트들을 size 바이트 수만큼 할당한 후 메모리에 0을 채워 넣어 포인터를 반환한다.
+
+RETURN VALUES
+성공 시 메모리가 할당된 포인터 반환, 오류가 있으면 NULL 포인터 반환하고, “ENOMEM” 오류메세지를 설정한다.

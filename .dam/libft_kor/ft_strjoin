@@ -1,0 +1,36 @@
+ft_strjoin (string join)
+메모리를 새로 할당하여 문자열 합치기
+ft_strjoin({뒤에 추가될 문자열}, {추가할 문자열})
+
+How to use
+ft_strjoin("Hello ", "World");
+
+-----  RETURN  -----   
+Hello World
+
+Error / Warning
+- 선행 또는 후행 문자열이 NULL일 경우
+ft_strjoin(NULL, “Hello”);
+    
+$ ./a.out   
+(null)      
+    
+
+- 두 문자열이 빈 문자열일 경우    
+ft_strjoin(“”, “”);
+    
+$ ./a.out                          
+	| ascii value : [0] [0]
+
+SYNOPSIS
+char	*ft_strjoin(char const *s1, char const *s2)
+
+PARAMETER
+- s1 : 선행 문자열
+- s2 : 후행 문자열 (덧붙이고자 하는 문자열)
+
+DESCRIPTION
+새로운 문자열을 malloc 함수를 사용하여 할당한 후 s1 문자열 뒤에 s2 문자열을 이어 붙여 결과로 반환한다.
+
+RETURN VALUES
+성공 시 새로 만들어진 문자열을 반환, 실패 시 NULL 포인터를 반환한다.

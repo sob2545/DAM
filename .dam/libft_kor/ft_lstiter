@@ -1,0 +1,43 @@
+ft_lstiter
+포인터함수를 통해 노드 내용 변경
+ft_lstiter({변경할 노드}, {변경하는 함수})
+
+How to use
+static void	f_iter(void *content)
+{
+	int	res;
+
+	res = (long)content * 2;
+	return ((void *)res);
+}
+
+int	main(void)
+{
+	t_list	*l = ft_lstnew((void *)(long)48);
+
+	l->next = ft_lstnew((void *)(long)6);
+	l->next->next = ft_lstnew((void *)(long)12);
+	ft_lstiter(l, f_iter);
+
+	while (l)
+	{
+		printf("%ld ", (long)l->content);
+		l = l->next;
+	}
+}
+
+-----  RETURN  -----
+96 12 24
+
+SYNOPSIS
+void	ft_lstiter(t_list *lst, void (*f)(void *)
+
+PARAMETER
+- *lst : 노드의 포인터 주소
+- (*f)(void *) : 리스트에서 반복할 때 사용하는 함수의 주소
+
+DESCRIPTION
+리스트 lst를 반복하여 함수 f에 각 노드의 내용을 적용한다.
+
+RETURN VALUES
+—NONE—

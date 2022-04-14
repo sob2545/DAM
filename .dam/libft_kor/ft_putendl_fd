@@ -1,0 +1,22 @@
+ft_putendl_fd (put endline)
+문자열을 개행과 함께 출력
+ft_putendl_fd({출력할 문자열}, {파일 디스크립터})
+
+How to use
+ft_putendl_fd("Hello, world!")
+
+-----  RETURN  -----   
+Hello, world!
+
+SYNOPSIS
+void	ft_putendl_fd(char *s, int fd)
+
+PARAMETER
+- c : 출력할 문자열
+- fd : 파일 디스크립터 (File Descrpitor)
+
+DESCRIPTION
+문자열 s를 파일 디스크립터로 개행과 함께 출력한다.
+
+RETURN VALUES
+—NONE—

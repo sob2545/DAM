@@ -1,0 +1,55 @@
+ft_bzero (be zero - write zeroes to a byte string)
+메모리 배열에 0을 채워넣는 함수
+ft_bzero({0으로 채울 문자열}, {채우고자 하는 바이트 수})
+
+How to use
+char str[10];
+int arr[10];
+
+ft_bzero(str, sizeof(str));	// char 배열을 0으로 초기화
+ft_bzero(arr, sizeof(arr));	// int 배열을 0으로 초기화
+
+-----  RETURN  -----
+0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0
+
+Error / Warning
+- 문자열이 NULL 일 경우
+ft_bzero(NULL, 5);
+
+$ ./a.out     
+Segmentation Fault
+    
+
+- 바이트 수가 0일 경우
+ft_bzero(str, 0)   
+
+$ ./a.out             
+[function ended]
+    
+
+- int 배열 일부만 초기화 시킬 경우 size는 자료형 크기 * 할당 공간 수
+ft_bzero(arr, sizeof(int) * 3);
+
+$ ./a.out
+0 0 0 
+    
+- 바이트 수가 배열 크기보다 클 경우    
+int	arr[5];
+ft_bzero(arr, sizof(int) * 7);
+
+$ ./a.out
+Sig abort
+
+SYNOPSIS
+void	ft_bzero(void *s, size_t n)
+
+PARAMETER
+- s : 0 바이트를 채우고자 하는 문자열
+- n : 채우고자 하는 바이트의 수 size_t
+
+DESCRIPTION
+bzero함수는 배열 s에서 n바이트 만큼 0 바이트를 채워 넣는 함수. 만약 n이 0이면 bzero 함수는 동작을 하지 않는다.
+
+RETURN VALUES
+—NONE—

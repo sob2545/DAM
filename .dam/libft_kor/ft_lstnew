@@ -1,0 +1,22 @@
+ft_lstnew
+리스트 새로운 노드 만들기
+ft_lstnew({노드의 내용})
+
+How to use
+t_list	*l = ft_lstnew(ft_strdup("hello"));
+printf("%s", (char *)l->content);
+
+-----  RETURN  -----
+hello
+
+SYNOPSIS
+t_list	*ft_lstnew(void *content)
+
+PARAMETER
+- content : 노드에 생성할 내용
+
+DESCRIPTION
+메모리를 새로 할당하여 새로운 노드를 반환한다. 맴버의 content 변수는 매개변수로 받은 content의 값으로 초기화 한다. next 변수의 다음은 NULL로 초기화 한다.
+
+RETURN VALUES
+새로운 노드를 반환한다.

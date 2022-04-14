@@ -1,0 +1,44 @@
+ft_memcmp (memory compare - compare byte string)
+바이트 내에 두 메모리 비교
+ft_memcmp({비교할 메모리1}, {비교할 메모리2}, {바이트 수})
+
+How to use
+printf("%d", ft_memcmp("Hello", "Hello World", 7);
+printf("%d", ft_memcmp("Hello", "Hello", 7);           // 문자열 길이보다 길게 비교하는 경우
+
+-----  RETURN  -----   
+-32
+0
+
+Error / Warning
+- 바이트 수가 0일 경우
+ft_memcmp(s1, s2, 0);
+    
+$ ./a.out
+(null)   
+    
+- s1이 NULL 포인터일 경우
+ft_memcpy(NULL, “Hello”, 'l', 3);
+    
+$ ./a.out         
+Segmentation Fault
+    
+- s2가 NULL 포인터일 경우
+ft_memcpy(“Hello”, NULL, 'l', 3);
+    
+$ ./a.out         
+Segmentation Fault
+
+SYNOPSIS
+void	*memcmp(const void *s1, const void *s2, size_t n)
+
+PARAMETER
+- s1 : 비교하고자 하는 메모리
+- s2 : 비교할 메모리
+- n : 비교할 데이터의 길이 (바이트)
+
+DESCRIPTION
+memcmp 함수는 n 바이트 만큼 문자열 s1과 문자열 s2를 비교하는 함수이다.
+
+RETURN VALUES
+memcmp 함수는 두 문자열이 같으면 0을 반환하고 다르면 두 문자열이 다른 첫 번째 값의 차이를 반환한다. (unsinged char 형을 다루기 때문에 ‘\200’ 이 ‘\0’ 보다 큼). 길이 n이 0일 경우 항상 동일하다.

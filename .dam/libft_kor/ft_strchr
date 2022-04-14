@@ -1,0 +1,41 @@
+ft_strchr (locate character in string)
+문자열 앞에서 부터 문자 찾기
+ft_strchr({문자열}, {찾을 문자})
+
+How to use
+printf("%s", ft_strchr("hello", 'l');
+
+while (ft_strchr(s1, charset);
+	...
+
+-----  RETURN  -----   
+llo
+
+Error / Warning
+- 빈 문자열이 들어올 경우    
+ft_strchr(“”, ‘l’);
+ft_strchr(“”, ‘\0’);
+    
+$ ./a.out               
+(null)                   
+	| ascii value : [0]
+    
+
+- 문자열로 NULL 포인터가 들어올 경우
+ft_strchr(NULL, ‘\0’)
+    
+$ ./a.out         
+Segmentation Fault
+
+SYNOPSIS
+char	*ft_strchr(const char *s, int c)
+
+PARAMETER
+- s : c 문자를 찾을 문자열
+- c : 찾고자 하는 문자(unsigned char)
+
+DESCRIPTION
+strchr 함수는 s 문자열에서 c의 위치를 찾는 함수이며 c 문자가 ‘\0’이 될 수 있고, 찾았을 때 위치를 반환한다.
+
+RETURN VALUES
+strchr 함수는 찾고자 하는 c 문자가 s 문자열에 위치한 포인터 주소를 반환, 만약 c 문자가 없을 경우 NULL 포인터 반환한다.

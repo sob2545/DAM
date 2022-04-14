@@ -1,0 +1,44 @@
+ft_split (split string)
+구분자를 기준으로 문자열 분리
+ft_split({분리할 문자열}, {구분자})
+
+How to use
+char	**str = ft_split ("   Hello World!  ", ' ');
+int		i = 0;
+
+while (str[i])
+{
+	printf("%s\n", str[i]);
+	i++;
+}
+
+-----  RETURN  -----   
+Hello
+World!
+
+Error / Warning
+- 분할한 문자열이 NULL 포인터일 때
+ft_split(NULL, ‘l’);
+    
+$ ./a.out         
+Segmentation fault
+    
+
+- 빈 문자열이 들어올 경우    
+ft_split(“”, ‘\0’);
+    
+$ ./a.out    
+(null)
+
+SYNOPSIS
+char	**split(char const *s, char c)
+
+PARAMETER
+- s : 구분자를 통해 자를 문자열
+- c : 문자열을 분할할 구분자
+
+DESCRIPTION
+split 함수는 문자열 s를 구분자인 문자 c로 분할한 문자열들의 배열을 반환한다. 배열의 마지막은 무조건 NULL 포인터로 끝나야 한다.
+
+RETURN VALUES
+분할된 문자열들의 배열을 반환한다. 할당에 실패하면 NULL 포인터를 반환한다.

@@ -1,0 +1,42 @@
+ft_strtrim (string trim)
+문자열 앞, 뒤에 있는 구분자 문자들을 자르기
+ft_strtrim({자를 문자열}, {구분자로 이루어진 배열})
+
+How to use
+printf("%d", ft_strtrim("     Hello    ", " \t\v"));
+
+-----  RETURN  -----   
+Hello
+
+Error / Warning
+- 자를 문자열 또는 구분자가 NULL 포인터로 들어올 경우
+ft_strtrim(NULL, “abc”);
+ft_strtrim(”Hello”, NULL);
+    
+$ ./a.out         
+Segmentation fault
+Segmentation fault
+    
+
+- 자를 문자열 또는 구분자가 빈 문자열일 경우
+ft_strtrim("", “”);
+ft_strtrim("Hello", “”);
+ft_strtrim("", “abc”);
+    
+$ ./a.out                    
+    | ascii value : [0]  
+Hello                        
+	| ascii value : [0]
+
+SYNOPSIS
+char	*ft_strtrim(char const *s1, char const *set)
+
+PARAMETER
+- s1 : 자를 문자열
+- set : 자르고자 하는 구분자 배열
+
+DESCRIPTION
+strtrim 함수는 문자열 s1의 처음과 끝에서 부터 구분자 set 안의 문자들을 자르고, 안에 남은 내용을 malloc을 사용하여 동적할당 후 복사한다.
+
+RETURN VALUES
+자른 문자열을 반환하고, 동적할당 실패 시 NULL 포인터를 반환한다.

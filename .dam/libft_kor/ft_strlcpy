@@ -1,0 +1,122 @@
+ft_strlcpy (size-bounded string copying)
+문자열을 사이즈 만큼 복사
+ft_strlcpy({복사될 문자열}, {복사할 문자열}, {nul을 포함한 문자열 전체 길이})
+
+How to use
+char	dst[11] = "Hello";
+char	src[6] = "World";
+
+printf("%d", ft_strlcpy(dst, src, 6));
+printf("%d", ft_strlcpy(dst, src, 3));
+
+-----  RETURN  -----   
+5   World
+5   Wo
+
+Error / Warning
+- 사이즈가 0일 경우
+char	dst[30] = “Hello”;
+char	src[6] = “World”;
+    
+ft_strlcpy(dst, src, 0);
+    
+$ ./a.out  
+Hello  [5] 
+    
+
+- src에 빈 문자열이 들어올 경우
+char	dst[30] = “Hello”;
+char	src[6] = “”;
+    
+ft_strlcpy(dst, src, 6);
+    
+$ ./a.out  
+      [0] 
+    
+
+- 문자열로 NULL 포인터가 들어올 경우
+char	dst[6] = “Hello”;
+char	src[6] = “World”;
+    
+ft_strlcpy(NULL, src, 7);
+ft_strlcpy(src, NULL, 7);
+    
+$ ./a.out         
+Segmentation Fault
+Segmentation Fault
+    
+
+- char * 문자열을 복사할 경우
+char	*dst = “Hello”;
+char	*src = “World”;
+    
+ft_strlcpy(dst, src, 6);
+    
+$ ./a.out   
+Bus error   
+    
+
+- 공간을 할당하지 않은 문자열을 복사할 경우
+char	dst[] = “Hello”;
+char	src[] = “World”;
+    
+ft_strlcpy(dst, src, 6);
+strlcpy(dst, src, 6);
+    
+$ ./ft_strlcpy
+World     [6]   
+    
+$ ./strlcpy   
+World     [6]   
+    
+- dst의 문자열 일부를 src로 붙여넣을 경우
+char	dst[20] = “Hello”;
+    
+ft_strlcpy(dst, dst + 3, 3);
+strlcpy(dst, dst + 3, 3);
+    
+$ ./ft_strlcpy
+lo         [2]
+    
+$ ./strlcat   
+lo         [2]
+    
+- 매개변수로 문자열을 그대로 넣은 경우
+ft_strlcpy(“Hello”, “World”, 6);
+strlcat(“Hello”, “World”, 6);
+    
+$ ./ft_strlcpy   
+bus error        
+    
+$ ./strlcpy      
+bus error              
+    
+
+- dst의 문자열 공간보다 많은 사이즈를 붙일 경우
+char	dst[6] = “Hello”;
+char	src[10] = “World!!!!”;
+    
+ft_strlcat(dst, src, 10);
+strlcat(dst, src, 10);
+    
+$ ./ft_strlcpy    
+World!!!!     [9]]
+    
+$ ./strlcpy                             
+warning: ‘strlcpy’ will always overflow;
+
+SYNOPSIS
+size_t	ft_strlcpy(char *dst, const char *src, size_t) 
+
+PARAMETER
+- dst : 내용을 복사하고자 하는 문자열의 주소
+- src : 복사하기 위한 문자열
+- dstsize : 문자열의 전체 크기 (dst + src 사이즈)
+
+DESCRIPTION
+strlcpy와 strlcat은 dst 문자열의 전체 버퍼 사이즈를 매개변수로 받고, 만약 공간이 있으면 nul 종료를 보장한다. dstsize 공간 안에 nul 공간도 필히 포함되어야 한다.
+
+RETURN VALUES
+snprintf 처럼 strlcpy와 strlcat 함수는 반환값으로 함수가 만들고자 한 전체 문장의 길이를 반환한다. strlcpy의 경우 src의 길이를 의미하고, strlcat의 경우 dst의 처음 크기에 src 길이를 더한 값을 의미한다.
+
+만약 반환값이 >= dstsize 일 경우, 출력되는 문자열의 길이를 줄이게 된다. 이것은 호출자의 책임이므로 처리해야 한다.

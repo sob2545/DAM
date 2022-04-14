@@ -1,0 +1,76 @@
+ft_memcpy (memory copy - copy memory area)
+메모리를 복사하는 함수
+ft_memcpy({복사될 메모리 포인터}, {복사할 메모리 포인터}, {바이트 수})
+
+How to use
+char	dst[] = "test";
+char	*src = "Hello World"; 
+char	*res_1;
+
+int		arr_1[3];
+int		arr_2[] = {1, 2, 3, 4, 5}; 
+int		*res_2;
+
+printf("%s", (char *)ft_memcpy(dst, src, 3);                 // dst에 src 내용 일부 복사
+printf("%s", (char *)ft_memcpy(dst, src, ft_strlen(src));    // dst에 src 내용 전체 복사
+
+res_1 = ft_memcpy(dst, src, 15);                       // dst에 src 내용 보다 많이 복사 
+for(int i = 0; i < 15; i++)
+		printf("%c", res_1[i]);
+
+res_2 = ft_memcpy(arr_1, arr_2, 3);
+for(int i = 0; i < 3; i++)
+		printf("%c", res_2[i]);
+
+-----  RETURN  -----   
+Helt
+Hello World
+Hello World d     // overlap 발생
+
+1, 2, 3
+
+Error / Warning
+- 바이트 수가 0일 경우
+ft_memcpy(dst, src, 0);    
+
+$ ./a.out
+(null)
+    
+- dst가 NULL 포인터일 경우   
+ft_memcpy(NULL, “Hello”, 3);    
+
+$ ./a.out         
+Segmentation Fault
+    
+- src가 NULL 포인터일 경우
+ft_memcpy(“Hello”, NULL, 3);
+
+$ ./a.out         
+Segmentation Fault
+    
+- dst 주소가 src 주소보다 작은 경우
+ft_memcpy(str, str + 3, 5);
+
+$ ./a.out          
+bus error / overlap
+    
+- int 배열 dst에 할당된 공간보다 많은 바이트를 복사할 경우
+int dst[5];
+ft_memcpy(dst, src, sizeof(int) * 7);    
+
+$ ./a.out
+Sig abort
+
+SYNOPSIS
+void	*ft_memcpy(void *dst, const void *src, size_t n)
+
+PARAMETER
+- dst : 복사 받을 메모리를 가르키는 포인터
+- src : 복사할 메모리를 카르키는 포인터
+- n : 복사할 데이터의 길이 (바이트)
+
+DESCRIPTION
+memcpy 함수는 배열 src 에서 배열 dst로 n 바이트만큼 복사한다. 만약 dst와 src에 *오버랩 (버퍼중복)이 발생 시 동작이 정의되지 않음. dst와 src가 버퍼중복이 일어날 시 memmove로 대신 사용하는 것을 권장한다.
+
+RETURN VALUES
+복사된 포인터인 dst 주소를 반환한다.

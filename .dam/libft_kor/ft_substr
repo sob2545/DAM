@@ -1,0 +1,53 @@
+ft_substr (sub string)
+문자열의 시작점을 정하여 사이즈 만큼 메모리에 할당하여 복사
+ft_substr({비교할 문자열1}, {비교할 문자열2}, {비교할 사이즈})
+
+How to use
+t_list *l = ft_lstnew(ft_substr("Hello World!", "6", 6));
+
+printf("%s", (char *)l->content));
+
+-----  RETURN  -----   
+World!
+
+Error / Warning
+- 문자열이 NULL 포인터일 경우
+ft_substr(NULL, 3, 5);
+    
+$ ./a.out     
+(null)        
+    
+
+- 빈 문자열이 들어올 경우
+ft_substr(NULL, 3, 5);
+    
+$ ./a.out                   
+     | ascii value [0]  
+    
+
+- 시작 구간이 문자열 길이보다 길 경우
+ft_substr(“Hello”, 7, 5);
+    
+$ ./a.out                   
+	| ascii value [0]  
+    
+
+- 사이즈가 남은 문자열 사이즈 보다 긴 경우
+ft_substr(“Hello”, 3, 5);
+    
+$ ./a.out                   
+lo       | ascii value : l [108] o [110] 0 [0]
+
+SYNOPSIS
+char	**ft_substr(char const *s, unsigned int start, size_t len)
+
+PARAMETER
+- s : substring 하고자 하는 문자열
+- start : 시작 인덱스
+- len : 할당하고자 하는 문자열 길이
+
+DESCRIPTION
+substr 함수는 부분 문자열의 시작은 문자열 s의 start 인덱스 부터 최대 len 길이만큼 malloc 함수를 통해 메모리를 할당하여 반환한다.
+
+RETURN VALUES
+부분 문자열을 반환하고 할당 실패 시 NULL 포인터를 반환한다.

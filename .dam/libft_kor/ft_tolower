@@ -1,0 +1,26 @@
+ft_tolower (to lower character)
+대문자를 소문자로 변경
+ft_tolower({대문자})
+
+How to use
+char	*str = "HELLO"
+while (*str)
+{
+	ft_tolower(*str);
+	str++;
+}
+
+-----  RETURN  -----   
+hello
+
+SYNOPSIS
+int ft_tolower (int c)
+
+PARAMETER
+- c : 소문자로 바꾸려는 문자 (ascii 코드)
+
+DESCRIPTION
+tolower 함수는 대문자를 일치하는 소문자로 변환하는 함수이다. 매개변수는 반드시 unsigned char 형태나 EOF 값으로 나타낼 수 있다.
+
+RETURN VALUES
+만약 매개변수가 대문자이면 일치하는 소문자로 변환하여 반환하고 아닌 경우 받은 값을 그대로 반환한다.

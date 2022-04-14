@@ -1,0 +1,52 @@
+ft_lstmap
+포인터 함수를 통해 리스트 모든 내용 변경
+ft_lstmap({변경할 리스트}, {변경하는 함수}, {내용을 지우는 함수})
+
+How to use
+void	*f_iter(void *content)
+{
+	long	res;
+	res = (long)content * 2;
+	return ((void *)res);
+}
+
+static void	lstfee(void *content)
+{
+	free(content);
+	content = NULL;
+	return ;
+}
+
+int	main(void)
+{
+	t_list	*l = ft_lstnew((void *)(long)48);
+
+	l->next = ft_lstnew((void *)(long)6);
+	l->next->next = ft_lstnew((void *)(long)12);
+
+	ft_lstmap(l, f_iter, lstfee);
+	printf("%d\n", ft_lstsize(l));
+
+	while (l)
+	{
+		printf("%ld ", (long)(l->content));
+		l = l->next;
+	}
+}
+
+-----  RETURN  -----
+96 12 24
+
+SYNOPSIS
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
+
+PARAMETER
+- *lst : 노드의 포인터 주소
+- *(*f)(void *) : 리스트에서 반복할 때 사용하는 함수의 주소
+- (*del)(void *) : 필요 시 노드의 내용을 지울 때 사용하는 함수의 주소
+
+DESCRIPTION
+리스트의 각 노드 내용들을 f 함수에 적용하여 반복한다. 함수 f에서 적용한 연속된 내용들을 새로운 리스트의 결과로 만든다. 필요 시 del 함수를 이용해 노드의 내용을 지워야 한다.
+
+RETURN VALUES
+새로운 리스트를 반환한다. 할당 실패 시 NULL 포인터를 반환한다.

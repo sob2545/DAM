@@ -1,0 +1,131 @@
+ft_strlcat (size-bounded string copying and concatenation)
+문자열 끝에 다른 문자열 사이즈 만큼 붙이기
+ft_strlcat({뒤에 추가될 문자열}, {추가할 문자열}, {nul을 포함한 문자열 전체 길이})
+
+How to use
+char	dst[11] = "Hello";
+char	src[6] = "World";
+
+printf("%d", ft_strlcat(dst, src, 11));
+printf("%d", ft_strlcat(dst, src, 3));
+
+-----  RETURN  -----   
+10  HelloWorld
+8   Hello
+
+Error / Warning
+- 사이즈가 0일 경우
+char	dst[30] = “Hello”;
+char	src[6] = “World”;
+    
+ft_strlcat(dst, src, 0);
+    
+$ ./a.out  
+Hello  [5] 
+    
+
+- dst에 빈 문자열이 들어올 경우
+char	dst[30] = “”;
+char	src[6] = “Hello”;
+    
+ft_strlcat(dst, src, 7);
+    
+$ ./a.out  
+Hello  [5] 
+    
+
+- 문자열로 NULL 포인터가 들어올 경우
+char	dst[30] = NULL;
+char	src[6] = “Hello”;
+    
+ft_strlcat(dst, src, 7);
+ft_strlcat(src, dst, 7);
+    
+$ ./a.out         
+Segmentation Fault
+Segmentation Fault
+    
+
+- char * 문자열을 복사할 경우
+char	*dst = “Hello”;
+char	*src = “World”;
+    
+ft_strlcat(dst, src, 11);
+    
+$ ./a.out   
+bus error   
+    
+
+- 공간을 할당하지 않은 문자열을 복사할 경우
+char	dst[] = “Hello”;
+char	src[] = “World”;
+    
+ft_strlcat(dst, src, 11);
+strlcat(dst, src, 11);
+    
+$ ./ft_strlcat    
+HelloWorld    [10]
+    
+$ ./strlcat                             
+warning: ‘strlcat’ will always overflow;
+    
+- dst의 문자열 일부를 src로 붙여넣을 경우
+char	dst[20] = “Hello World”;
+    
+ft_strlcat(dst, dst + 5, 18);
+strlcat(dst, dst + 5, 18);
+    
+$ ./ft_strlcat          
+Hello World World   [17]
+    
+$ ./strlcat   
+tace trap     
+    
+- 매개변수로 문자열을 그대로 넣은 경우
+ft_strlcat(“Hello”, “World”, 11);
+strlcat(“Hello”, “World”, 11);
+    
+$ ./ft_strlcat   
+bus error        
+    
+$ ./strlcat                             
+warning: ‘strlcat’ will always overflow;
+    
+- dst의 문자열 공간보다 많은 사이즈를 붙일 경우
+char	dst[6] = “Hello”;
+char	src[6] = “World”;
+    
+ft_strlcat(dst, src, 11);
+strlcat(dst, src, 11);
+    
+$ ./ft_strlcat    
+HelloWorld    [10]
+    
+$ ./strlcat                             
+warning: ‘strlcat’ will always overflow;
+
+SYNOPSIS
+size_t	ft_strlcat(char *dst, cosnt char *src, size_t dstsize)
+
+PARAMETER
+- dst : 내용을 붙이고자 하는 문자열의 주소
+- src : 붙이기 위한 문자열
+- dstsize : 문자열의 전체 크기 (dst + src 사이즈)
+
+DESCRIPTION
+strlcpy와 strlcat 함수는 snprintf 함수처럼 동일한 매개변수를 인자로 받아 문자열들을 복사하고 붙여서 반환한다. strlcpy와 strlcat 함수는 더욱 안전하고, 견고하고, strncpy와 strncat을 잘못 사용할 때 발생하는 에러를 줄이기 위해 설계됐다.
+
+strlcpy와 strlcat은 dst 문자열의 전체 버퍼 사이즈를 매개변수로 받고, 만약 공간이 있으면 nul 종료를 보장한다. dstsize 공간 안에 nul 공간도 필히 포함되어야 한다.
+
+strlcat 함수는 dst 문자열 끝에 src 함수를 dstsize - strlen(dst) - 1만큼 덧붙이고 마지막에 nul을 넣어준다. dstsize가 0이거나 dst의 길이가 dstsize 보다 길면 dstsize가 적합한 값이 아니기 때문이거나 dst가 적합하지 않은 문자열이기 때문에 작동하지 않는다.
+
+RETURN VALUES
+반환값 타입과 값의 안정성의 불만으로 다음 2개의 경우가 동일하다. (snprintf 는 몇몇 시스템에서 모두 안전한 것은 아님)
+
+n = strlcpy(dst, src, len);
+
+n = snprintf(dst, len, "%s", src);
+
+snprintf 처럼 strlcpy와 strlcat 함수는 반환값으로 함수가 만들고자 한 전체 문장의 길이를 반환한다. strlcpy의 경우 src의 길이를 의미하고, strlcat의 경우 dst의 처음 크기에 src 길이를 더한 값을 의미한다.
+
+만약 반환값이 >= dstsize 일 경우, 출력되는 문자열의 길이를 줄이게 된다. 이것은 호출자의 책임이므로 처리해야 한다.

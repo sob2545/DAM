@@ -1,0 +1,19 @@
+ft_lstlast
+리스트의 마지막 노드 찾기
+ft_lstlast({리스트})
+
+How to use
+t_list	*last = ft_lstlast(lst);
+printf("%s", last->content);
+
+SYNOPSIS
+t_list	*ft_lstlast(t_list *lst)
+
+PARAMETER
+- lst : 리스트의 시작점
+
+DESCRIPTION
+리스트의 마지막 노드를 반환한다.
+
+RETURN VALUES
+리스트의 마지막 노드를 반환한다.

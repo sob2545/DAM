@@ -1,0 +1,35 @@
+ft_strdup (string duplicate)
+새로운 메모리를 할당하여 문자열 복사
+ft_strdup({복사할 문자열})
+
+How to use
+ft_lstnew(strdup("hello"));
+
+-----  RETURN  -----   
+hello
+
+Error / Warning
+- 빈 문자열이 들어올 경우
+ft_strdup(“”);
+    
+$ ./a.out                
+   | ascii value : [0]
+    
+
+- NULL 포인터가 들어올 경우
+ft_strdup(NULL);
+    
+$ ./a.out         
+Segmentation Fault
+
+SYNOPSIS
+char	*ft_strdup(const char *s1)
+
+PARAMETER
+- s1 : 새로운 메모리를 할당하여 복사하고자 하는 문자열
+
+DESCRIPTION
+strdup 함수는 문자열 s1을 복사하기 위해 충분한 메모리의 공간을 할당하고, 복사 후 그 포인터를 반환하는 함수이다. 포인터는 차후 free 함수의 매개변수로 사용될 수 있다.
+
+RETURN VALUES
+만약 메모리 공간이 불충분하면 NULL 포인터가 반환되고 ENOMEM 에러 메세지를 설정한다.

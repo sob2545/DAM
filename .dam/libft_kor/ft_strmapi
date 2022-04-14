@@ -1,0 +1,54 @@
+ft_strmapi (string mapping)
+메모리를 새로 할당하여 문자열 내 인덱스 변경
+ft_strmapi({변경할 문자열}, {포인터 함수 프로토타입})
+
+How to use
+static char toupper_idx(unsigned int i, char c)
+{
+	(void) i;
+	if (c >= 'a' && c <= 'z')
+		c -= 32;
+}
+
+int main(void)
+{
+	char	(*f)(unsigned int, char);
+	f = toupper_idx;
+	t_list *l;
+
+	printf("%s", ft_strmapi("hello", f));
+	l = ft_lstnew(ft_strmapi("abcde", f));
+	printf("%s", (char *)l->content);
+}
+
+-----  RETURN  -----   
+HELLO
+ABCDE
+
+Error / Warning
+- 문자열 포인터가 NULL일 경우 str에 접근 시 Segmentation fault
+char	*str = NULL;
+ft_strmapi(str, f)
+    
+$ ./a.out         
+Segmentation fault
+    
+- 함수 포인터가 NULL일 경우
+f = NULL;
+ft_strmapi("abc", f)
+    
+$ ./a.out                        
+(null)
+
+SYNOPSIS
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+
+PARAMETER
+- s : 포인터 함수의 매개변수로 사용할 문자열
+- f : 문자열 s의 인덱스와 해당 주소를 매개변수로 받아 사용할 함수의 포인터
+
+DESCRIPTION
+문자열 s의 인덱스를 지나면서 각각의 문자들을 f 포인터 함수의 결과로 나온 값을 새로운 문자열을 할당하여 적용한다.
+
+RETURN VALUES
+성공 시 포인터 함수 f를 통해 생성된 문자열을 반환하고, 할당에 실패할 경우 NULL 포인터를 반환한다.

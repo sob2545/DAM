@@ -1,0 +1,75 @@
+ft_memset (memory set)
+메모리 내에 바이트 수 만큼 특정 문자로 초기화
+ft_memset({메모리 주소}, {채우려는 값}, {바이트 수})
+
+How to use
+char	str[5];
+int		arr[5];
+
+ft_memset(str, '0', 5);
+ft_memset(arr, 0, sizeof(int) * 5);
+ft_memset(arr, -1, sizeof(int) * 5);
+
+-----  RETURN  -----   
+0[48] 0[48] 0[48] 0[48] 0[48]
+0 0 0 0 0
+-1 -1 -1 -1 -1
+
+Error / Warning
+- 바이트 수가 0일 경우
+ft_memmset(str, ‘a’, 0);
+memset(str, ‘a’, 0);
+    
+$ ./ft_memset        
+    | trash value
+    
+$ ./memmset  
+Compile error    
+
+
+- int 배열을 0 (또는 NULL과 -1)이 아닌 다른 값으로 초기화할 경우
+ft_memset(arr, 1, sizeof(int) * 5);
+    
+$ ./a.out                                   
+16943009 16943009 16943009 16943009 16943009
+
+
+- 문자 c가 unsigned char 범위를 초과하는 경우
+ft_memset(arr, 257, 5);
+    
+$ ./a.out                                
+    | ascii valuse : [1] [1] [1] [1] [1]
+
+    
+- len이 배열 범위를 넘는 경우
+char str[5];
+    
+ft_memset(str, ‘a’, 7);
+memset(str, ‘a’, 7);
+    
+$ ./ft_memset
+Sig abort     
+    
+$ ./memset   
+Compile error
+    
+
+- 문자열 b가 NULL 포인터일 경우
+ft_memset(NULL, ‘0’, 5);
+    
+$ ./a.out         
+Segmentation Fault
+
+SYNOPSIS
+void	*ft_memset(void * b, int c, size_t len)
+
+PARAMETER
+- b : 내용을 채우고자 하는 메모리의 시작 주소
+- c : 메모리에 채우고자 하는 값 unsigned char로 변환되어 저장
+- len : 채우고자 하는 바이트의 수 sizeof(자료형 크기)
+
+DESCRIPTION
+memset 함수는 배열 b 에서 c(unsigned char로 변환된) 값을 len 바이트 만큼 채워 넣는 함수다.
+
+RETURN VALUES
+첫 번째 매개변수인 dst를 반환한다.

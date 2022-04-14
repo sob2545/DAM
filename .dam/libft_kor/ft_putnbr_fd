@@ -1,0 +1,23 @@
+ft_putnbr_fd (put number)
+int 숫자 출력
+ft_putnbr_fd({int형 숫자}, {파일 디스크립터})
+
+How to use
+int	i = 30;
+ft_putnbr_fd(i);
+
+-----  RETURN  -----   
+30
+
+SYNOPSIS
+void	ft_putnbr_fd(int n, int fd)
+
+PARAMETER
+- n : 출력할 정수 값
+- fd : 파일 디스크립터 (File Descrpitor)
+
+DESCRIPTION
+정수값 n을 받은 파일 디스크립터로 출력한다.
+
+RETURN VALUES
+—NONE—

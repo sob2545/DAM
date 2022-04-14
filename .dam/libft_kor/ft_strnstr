@@ -1,0 +1,65 @@
+strnstr (find string in string with number)
+사이즈 내에서 문자열 안에 문자열 찾기
+ft_strnstr({찾으려는 문자열}, {찾을 문자열}, {비교할 사이즈})
+
+How to use
+if (!(ft_strnstr(s1, s2, ft_strlen(s1))
+		...
+
+char	*ptr = ft_strnstr(s1, s2, sizeof(s1));
+
+printf("%s", ft_strnstr("Hello world!", "world", 12));
+
+-----  RETURN  -----   
+world!
+
+Error / Warning
+- 찾을 문자열 또는 찾고자 하는 문자열이 NULL 포인터일 경우
+    ft_strnstr(NULL, “Hello”, 10);
+    ft_strnstr(“Hello”, NULL, 10);
+    
+    $ ./a.out         
+    Segmentation fault
+    Segmentation fault
+    
+
+- 사이즈 바이트 수가 0일 경우
+    ft_strnstr(NULL, “Hello”, 10);
+    
+    $ ./a.out  
+    (null)     
+    
+
+- 찾을 문자열이 비어있을 경우
+    ft_strnstr(“”, “Hello”, 10);
+    
+    $ ./a.out  
+    (null)     
+    
+
+- 찾고자 하는 문자열이 비어있을 경우
+    ft_strnstr(“Hello”, “”, 3);
+    
+    $ ./a.out   
+    Hello       
+    
+
+- 사이즈 바이트 수가 문자열 보다 클 경우
+    ft_strnstr(“ABCDEFGHIJK”, “Hello”, 100);
+    
+    $ ./a.out  
+    (null)
+
+SYNOPSIS
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
+
+PARAMETER
+- haystack : 찾으려는 문자열
+- needle : haystack 내에서 찾고자 하는 문자열
+- len : 찾을 바이트 수
+
+DESCRIPTION
+strncmp 함수는 n 바이트 만큼 비교하는 함수이다. 왜냐하면 strncmp 함수는 데이터 영역 내에서만 비교하도록 설계되었으며, ‘\0’ 이후의 문자들은 비교하지 않는다.
+
+RETURN VALUES
+strcmp 함수와 strncmp 함수는 intger 형으로 0보다 크거나, 같거나, 적은 값을 반환한다. 비교할 s2 문자열이 s1 문자의 값(ascii 코드 값)과 비교하여 대소를 비교한다. unsigned char를 통해 비교를 하기 때문에 \200 이 \0 보다 크다

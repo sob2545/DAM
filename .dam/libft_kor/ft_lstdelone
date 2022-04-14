@@ -1,0 +1,31 @@
+ft_lstdelone
+노드를 기준으로 리스트 연결 끊기
+ft_lstdelone({끊을 노드}, {노드 내용 삭제하는 함수 주소})
+
+How to use
+static void	lst_del(void *content)
+{
+	free(content);
+	content = NULL;
+}
+
+int	main(void)
+{
+	...
+	void (*del)(void *);
+	del = lst_del;
+	ft_lstdelone(lst_3, del);
+}
+
+SYNOPSIS
+void	ft_lstdelone(t_list *lst, void (*del)(void *)
+
+PARAMETER
+- lst : 메모리 할당을 해제 하고자 하는 노드
+- (*del)(void *) : 노드의 내용을 지우는 함수의 주소
+
+DESCRIPTION
+매개변수로 노드를 받아 del 함수로 노드의 내용을 지우고 메모리 할당을 해제하는 함수이다. 다음 메모리는 반드시 할당 해제 해서는 안 된다.
+
+RETURN VALUES
+—NONE—

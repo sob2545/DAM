@@ -1,0 +1,41 @@
+ft_memchr (locate byte in byte string : C)
+문자열에서 문자 찾는 함수
+ft_memchr({찾을 문자열}, {찾을 문자}, {바이트 수})
+
+How to use
+char	*arr = "Hello\0World";
+ft_memchr (arr, W, 8);	// arr 배열 8바이트 내에 W 문자 찾기
+
+printf("%s", ft_memchr(arr, W, 8);
+printf("%p", ft_memchr(arr, W, 8);
+
+-----  RETURN  -----
+World
+0x102aafa6  [W의 주소]
+
+Error / Warning
+- 문자열이 NULL일 경우
+    ft_memchr(NULL, ‘\0’, 5);
+
+$ ./a.out         
+Segmentation Fault
+    
+- 바이트 수가 0일 경우→ NULL 반환
+ft_memchr(str, ‘a’, 0);
+    
+$ ./a.out
+(null)   
+    
+SYNOPSIS
+void	ft_memchr(const void *s, int c, size_t n)
+
+PARAMETER
+- s : c를 찾을 문자열
+- c : 찾고자 하는 문자 (unsigned char로 변환)
+- n : 찾을 바이트의 수 size_t
+
+DESCRIPTION
+memchr 함수는 문자열 s에서 n바이트 내에 c(unsigned char로 변환)가 있는 위치를 찾는 함수다.
+
+RETURN VALUES
+n 바이트 내에 문자 c가 있을 시 문자열 s에 c가 위치한 포인터 반환, n 바이트 내에 문자가 존재하지 않을 경우 NULL 포인터를 반환한다.
